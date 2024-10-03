@@ -21,12 +21,16 @@ $url = ControladorPlantilla::url();
         <!-- App css -->
         <link href="<?php echo $url; ?>vistas/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
 
-        <!-- Icons -->
-        <link href="<?php echo $url; ?>vistas/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+        <!-- Datatables css -->
+        <link href="<?php echo $url; ?>vistas/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $url; ?>vistas/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $url; ?>vistas/assets/libs/datatables.net-keytable-bs5/css/keyTable.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $url; ?>vistas/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $url; ?>vistas/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 
     </head>
-
-
 
     <!-- body start -->
     <body data-menu-color="dark" data-sidebar="default">
@@ -49,23 +53,25 @@ $url = ControladorPlantilla::url();
             <div class="content-page">
                     <?php
 
+                    if (isset($_GET["pagina"]))
+                    {                        
                     $rutas = explode('/',$_GET["pagina"]);
 
                     //print_r($rutas);
-
-                    if (isset($_GET["pagina"]))
-                    {
                         if ($rutas[0] == "categorias" ||                    
                             $rutas[0] == "productos" ||
+                            $rutas[0] == "agregar_producto" ||
                             $rutas[0] == "usuarios"
                         ) {
-                        include "vistas/modulos/" . $rutas[0] . ".php";
-                        }
-                    }
-                        
 
-                    ?>
-                
+                        include "vistas/modulos/" . $rutas[0] . ".php";
+                        }else{
+
+                            include "vistas/modulos/404.php";
+                        }
+                    }                        
+
+                    ?>               
 
 
                 <!-- Footer Start -->
@@ -89,6 +95,18 @@ $url = ControladorPlantilla::url();
         <script src="<?php echo $url; ?>vistas/assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
         <script src="<?php echo $url; ?>vistas/assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
         <script src="<?php echo $url; ?>vistas/assets/libs/feather-icons/feather.min.js"></script>
+
+        <!-- Datatables js -->
+        <script src="<?php echo $url; ?>vistas/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+
+        <!-- dataTables.bootstrap5 -->
+        <script src="<?php echo $url; ?>vistas/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+        <script src="<?php echo $url; ?>vistas/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+
+        
+        <!-- Datatable Demo App Js -->
+        <script src="<?php echo $url; ?>vistas/assets/js/pages/datatable.init.js"></script>
+
         <!-- App js-->
         <script src="<?php echo $url; ?>vistas/assets/js/app.js"></script>
         
